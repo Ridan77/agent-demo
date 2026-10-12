@@ -45,13 +45,12 @@ while (true) {
   })
 
   const assistantMessage = response.choices[0].message
-  // console.log('assistantMessage', assistantMessage)
   messages.push(assistantMessage)
 
   if (assistantMessage.tool_calls?.length) {
     for (const toolCall of assistantMessage.tool_calls) {
       const result = executeToolCall(toolCall)
-
+      console.log('toolCall', toolCall.function)
       messages.push({
         role: 'tool',
         tool_call_id: toolCall.id,
