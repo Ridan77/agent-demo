@@ -45,7 +45,7 @@ while (true) {
   })
 
   const assistantMessage = response.choices[0].message
-  console.log('assistantMessage', assistantMessage)
+  // console.log('assistantMessage', assistantMessage)
   messages.push(assistantMessage)
 
   if (assistantMessage.tool_calls?.length) {
@@ -57,21 +57,16 @@ while (true) {
         tool_call_id: toolCall.id,
         content: result,
       })
-
-      console.log(`Tool: ${toolCall.function.name}`)
-      console.log(result)
-      // console.log('Messages:', messages)
     }
 
     continue
   }
 
-  console.log()
   console.log('FINAL ANSWER')
   console.log('----------------')
   console.log(assistantMessage.content)
+  console.log('----------------')
 
-  // console.log()
-  console.log('messages', messages)
+  console.log('Complete conversation:', messages)
   break
 }
